@@ -8,17 +8,54 @@ tarrif_color = {0: "does not qualify",
 
 ####
 
-print("print welcome into Bounda insurance system"
+print("welcome into Bounda insurance system"
       "\nThis is a database entry sytem")
-#
 date = datetime.date.today().year
+#
+# data entry
 name = input("what's the client name :")
-year_age = int(input("year of birth :"))
+
+# age
+error_loop = True
+while error_loop:
+    try:
+        year_age = int(input("year of birth :"))
+        error_loop = False
+    except ValueError:
+        print("wrong input please try again")
+        error_loop = True
 age = date - year_age
-lyear_age = int(input("year of license acquisition :"))
+
+# license span
+error_loop = True
+while error_loop:
+    try:
+        lyear_age = int(input("year of license acquisition :"))
+        error_loop = False
+    except ValueError:
+        print("wrong input please try again")
+        error_loop = True
 licence = date - lyear_age
-accidents = int(input("number of accident :"))
-year_seniority = int(input("when does the client enter the society :"))
+
+# accidents
+error_loop = True
+while error_loop:
+    try:
+        accidents = int(input("number of accident :"))
+        error_loop = False
+    except ValueError:
+        print("wrong input please try again")
+        error_loop = True
+
+# seniority
+error_loop = True
+while error_loop:
+    try:
+        year_seniority = int(input("when does the client enter the society :"))
+        error_loop = False
+    except ValueError:
+        print("wrong input please try again")
+        error_loop = True
 seniority = date - year_seniority
 
 
@@ -61,7 +98,14 @@ if verification2 == "n":
             verification2 = input("is that correct (y or n) :").lower()
 
         elif correction == "2":
-            year_age = int(input("year of birth :"))
+            error_loop = True
+            while error_loop:
+                try:
+                    year_age = int(input("year of birth :"))
+                    error_loop = False
+                except ValueError:
+                    print("wrong input please try again")
+                    error_loop = True
             age = date - year_age
 
             print("name :" + name + "\nage : " + str(age) + " (" + str(year_age) + ")" + "\nlicense span :"
@@ -71,7 +115,14 @@ if verification2 == "n":
             verification2 = input("is that correct (y or n) :").lower()
 
         elif correction == "3":
-            lyear_age = int(input("year of license acquisition :"))
+            error_loop = True
+            while error_loop:
+                try:
+                    lyear_age = int(input("year of license acquisition :"))
+                    error_loop = False
+                except ValueError:
+                    print("wrong input please try again")
+                    error_loop = True
             licence = date - lyear_age
 
             print("name :" + name + "\nage : " + str(age) + " (" + str(year_age) + ")" + "\nlicense span :"
@@ -81,7 +132,14 @@ if verification2 == "n":
             verification2 = input("is that correct (y or n) :").lower()
 
         elif correction == "4":
-            accidents = int(input("number of accident :"))
+            error_loop = True
+            while error_loop:
+                try:
+                    accidents = int(input("number of accident :"))
+                    error_loop = False
+                except ValueError:
+                    print("wrong input please try again")
+                    error_loop = True
 
             print("name :" + name + "\nage : " + str(age) + " (" + str(year_age) + ")" + "\nlicense span :"
                   + str(licence) + " (" + str(lyear_age) + ")" + "\nnumber of accident :" + str(accidents) +
@@ -90,7 +148,14 @@ if verification2 == "n":
             verification2 = input("is that correct (y or n) :").lower()
 
         elif correction == "5":
-            year_seniority = int(input("when does the client enter the society :"))
+            error_loop = True
+            while error_loop:
+                try:
+                    year_seniority = int(input("when does the client enter the society :"))
+                    error_loop = False
+                except ValueError:
+                    print("wrong input please try again")
+                    error_loop = True
             seniority = date - year_seniority
 
             print("name :" + name + "\nage : " + str(age) + " (" + str(year_age) + ")" + "\nlicense span :"
@@ -134,13 +199,17 @@ if number > 0 and seniority >= 5:
 #  tarrif color verdict
 if number <= 0:
     print(tarrif_color[0])
-else:
+elif number > 0:
     print("the client qualify for tarrif option : " + tarrif_color[number])
-    if input("add in the data base ?") == "y":
+    data_entry = input("add in the data base :"
+                       "\n(y or n): ").lower()
+    while data_entry != "y" and data_entry != "n":
+        data_entry = input("invalid input. add in the data base (y or n):").lower()
+    if data_entry == "y":
         tcolor = tarrif_color[number]
         database_entry = [name, age, licence, accidents, seniority, tcolor, date]
         data_base = open("Database.txt", "a")
-        data_base.write(str(database_entry[0:6]))
+        data_base.write("\n" + str(database_entry[0:6]))
         data_base.close()
         print("Entry was added in the data base")
     else:

@@ -1,2 +1,4 @@
 name, age, licence, accidents, seniority, tcolor, date
 ['jeremie', 24, 3, 0, 2, 'orange']
+['josh', 36, 18, 0, 15, 'blue']
+['Angelina', 29, 9, 1, 5, 'green']
